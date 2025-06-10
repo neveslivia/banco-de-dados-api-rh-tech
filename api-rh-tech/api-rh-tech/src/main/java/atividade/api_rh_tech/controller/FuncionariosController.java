@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import atividade.api_rh_tech.model.FuncionariosModel;
 import atividade.api_rh_tech.service.FuncionariosService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("api/rh/funcionarios")
 public class FuncionariosController {
 

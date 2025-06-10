@@ -27,14 +27,14 @@ public class FuncionariosModel {
     private String senha;
     @Column(name = "cep", nullable = false)
     private String cep;
-    @Column(name = "endereco", nullable = false)
-    private String endereco;
-    @Column(name = "numero", nullable = false)
+    @Column(name = "logradouro")
+    private String logradouro;
+    @Column(name = "numero")
     private Integer numero;
-    @Column(name = "bairro", nullable = false)
+    @Column(name = "bairro")
     private String bairro;
-    @Column(name = "cidade", nullable = false)
+    @Column(name = "cidade")
     private String cidade;
-    @Column(name = "estado", nullable = false)
+    @Column(name = "estado")
     private String estado;
 }
