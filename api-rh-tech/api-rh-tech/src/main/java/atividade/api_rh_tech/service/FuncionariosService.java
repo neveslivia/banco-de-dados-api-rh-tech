@@ -43,7 +43,7 @@ public class FuncionariosService {
         funcionarioExistente.setBairro(funcionarioAtualizado.getBairro());
         funcionarioExistente.setCidade(funcionarioAtualizado.getCidade());
         funcionarioExistente.setEstado(funcionarioAtualizado.getEstado());
-        return funcionariosRepository.save(funcionarioAtualizado);
+        return funcionariosRepository.save(funcionarioExistente);
     }
 
     public void deletarFuncionario(Long id){
