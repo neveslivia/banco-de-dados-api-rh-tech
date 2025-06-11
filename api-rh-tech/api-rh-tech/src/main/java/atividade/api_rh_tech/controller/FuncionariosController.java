@@ -28,6 +28,7 @@ public class FuncionariosController {
     @Autowired
     FuncionariosService funcionariosService;
 
+
     @PostMapping
     public FuncionariosModel registrarFuncionario(@RequestBody FuncionariosModel funcionario) {
         return funcionariosService.cadastrarFuncionario(funcionario);
@@ -49,8 +50,8 @@ public class FuncionariosController {
         return funcionariosService.atualizarFuncionario(id, funcionario);
     }
 
-    @DeleteMapping("{id}")
-    public void deletarFuncionario(Long id){
+    @DeleteMapping("/{id}")
+    public void deletarFuncionario(@PathVariable Long id){
         funcionariosService.deletarFuncionario(id);
 
     }

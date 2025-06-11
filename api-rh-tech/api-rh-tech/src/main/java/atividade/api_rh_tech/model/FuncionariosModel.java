@@ -27,8 +27,8 @@ public class FuncionariosModel {
     private String senha;
     @Column(name = "cep", nullable = false)
     private String cep;
-    @Column(name = "logradouro")
-    private String logradouro;
+    @Column(name = "endereco")
+    private String endereco;
     @Column(name = "numero")
     private Integer numero;
     @Column(name = "bairro")

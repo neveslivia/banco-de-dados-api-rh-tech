@@ -38,7 +38,7 @@ public class FuncionariosService {
         funcionarioExistente.setEmail(funcionarioAtualizado.getEmail());
         funcionarioExistente.setSenha(funcionarioAtualizado.getSenha());
         funcionarioExistente.setCep(funcionarioAtualizado.getCep());
-        funcionarioExistente.setLogradouro(funcionarioAtualizado.getLogradouro());
+        funcionarioExistente.setEndereco(funcionarioAtualizado.getEndereco());
         funcionarioExistente.setNumero(funcionarioAtualizado.getNumero());
         funcionarioExistente.setBairro(funcionarioAtualizado.getBairro());
         funcionarioExistente.setCidade(funcionarioAtualizado.getCidade());
