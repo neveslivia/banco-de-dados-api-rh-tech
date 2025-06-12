@@ -1,6 +1,7 @@
 package atividade.api_rh_tech.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,31 +18,34 @@ import lombok.Setter;
 public class CargosService {
 
     @Autowired
-    CargosRepository cargosRepository;
+    private CargosRepository cargoRepository;
 
-    public CargosModel cadastrarCargo(CargosModel cargosModel){
-        return cargosRepository.save(cargosModel);
+    public List<CargosModel> listarTodos() {
+        return cargoRepository.findAll();
     }
 
-    public List< CargosModel> listarCargos(){
-        return cargosRepository.findAll();
+    public Optional<CargosModel> buscarPorId(Long id) {
+        return cargoRepository.findById(id);
     }
 
-    public CargosModel buscarCargosPorId(Long id){
-        return cargosRepository.findById(id).orElse(null);
+    public CargosModel salvar(CargosModel cargo) {
+        return cargoRepository.save(cargo);
     }
 
-    public CargosModel atualizarCargos(Long id, CargosModel cargoAtualizado){
-        CargosModel cargoExixtente = buscarCargosPorId(id);
-
-        cargoExixtente.setNome(cargoAtualizado.getNome());
-        cargoExixtente.setDescricao(cargoAtualizado.getDescricao());
-        return cargosRepository.save(cargoAtualizado);
-    }
-    public void deletarCargo(Long id){
-        cargosRepository.deleteById(id);
+    public CargosModel atualizar(Long id, CargosModel novoCargo) {
+        return cargoRepository.findById(id).map(cargo -> {
+            cargo.setNome(novoCargo.getNome());
+            cargo.setDescricao(novoCargo.getDescricao());
+            return cargoRepository.save(cargo);
+        }).orElseThrow(() -> new RuntimeException("Cargo não encontrado"));
     }
 
+    public void excluir(Long id) {
+        if (!cargoRepository.existsById(id)) {
+            throw new RuntimeException("Cargo não encontrado");
+        }
+        cargoRepository.deleteById(id);
+    }
 
 
 

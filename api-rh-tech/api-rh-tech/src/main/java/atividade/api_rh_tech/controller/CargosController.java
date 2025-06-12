@@ -3,6 +3,7 @@ package atividade.api_rh_tech.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import atividade.api_rh_tech.model.CargosModel;
 import atividade.api_rh_tech.service.CargosService;
-import lombok.NoArgsConstructor;
-
 @RestController
-@NoArgsConstructor
 @CrossOrigin(origins = "*")
 @RequestMapping("api/rh/cargos")
 public class CargosController {
@@ -29,28 +27,32 @@ public class CargosController {
 
     @PostMapping
     public CargosModel registrarCargo(@RequestBody CargosModel cargos) {
-        return cargosService.cadastrarCargo(cargos);
+        return cargosService.salvar(cargos);
     }
     
 
     @GetMapping
     public List<CargosModel> buscarCargos() {
-        return cargosService.listarCargos();
+        return cargosService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public CargosModel buscarCragosId(@PathVariable Long id) {
-        return cargosService.buscarCargosPorId(id);
-    }
+    public ResponseEntity<CargosModel> buscarCragosId(@PathVariable Long id) {
+    return cargosService.buscarPorId(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+}
+
+
 
     @PutMapping("/{id}")
     public CargosModel atualizarCargo(@PathVariable Long id, @RequestBody CargosModel cargo) {
-        return cargosService.atualizarCargos(id, cargo);
+        return cargosService.atualizar(id, cargo);
     }
 
     @DeleteMapping("/{id}")
-    public void deletarCargo(Long id){
-        cargosService.deletarCargo(id);
+    public void deletarCargo(@PathVariable Long id){
+        cargosService.excluir(id);
     }
     
 
